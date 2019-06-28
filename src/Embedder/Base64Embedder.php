@@ -22,6 +22,14 @@ class Base64Embedder extends Embedder
     }
 
     /**
+     * @param  string  $base64
+     */
+    public function fromBase64($base64)
+    {
+        return $base64;
+    }
+
+    /**
      * @param  EmbeddableEntity  $entity
      * @return string
      */

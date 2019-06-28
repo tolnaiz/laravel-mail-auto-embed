@@ -54,6 +54,24 @@ class AttachmentEmbedder extends Embedder
     }
 
     /**
+     * @param  string  $base64
+     */
+    public function fromBase64($base64)
+    {
+        preg_match("#data:(image\/\w+);base64,#", $base64, $matches);
+        
+        $data = base64_decode(preg_replace("#data:image\/\w+;base64,#", "", $base64));
+
+        return $this->embed(
+            new Swift_Image(
+                $data,
+                sha1($data),
+                $matches[1]
+            )
+        );
+    }
+
+    /**
      * @param  Swift_EmbeddedFile  $attachment
      * @return string
      */

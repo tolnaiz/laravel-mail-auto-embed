@@ -161,6 +161,11 @@ class SwiftEmbedImages implements Swift_Events_SendListener
             return $embedder->fromUrl($src);
         }
 
+        // base64 embedding
+        if (strpos($src, 'data:') === 0) {
+            return $embedder->fromBase64($src);
+        }
+
         return $src;
     }
 }
